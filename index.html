@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Advanced To-Do List</title>
+    <meta name="description" content="A beautiful, feature-rich task management application">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-check-double"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>TaskFlow</h1>
+                        <p class="tagline">Organize your life, one task at a time</p>
+                    </div>
+                </div>
+                <div class="header-controls">
+                    <div class="theme-toggle">
+                        <input type="checkbox" id="theme-switch" class="theme-switch">
+                        <label for="theme-switch" class="theme-label" title="Toggle theme">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Task Input Section -->
+        <section class="task-input-section">
+            <div class="input-card">
+                <div class="input-header">
+                    <h2><i class="fas fa-plus-circle"></i> Create New Task</h2>
+                    <p>Add a new task to your workflow</p>
+                </div>
+                <div class="input-container">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-edit input-icon"></i>
+                            <input type="text" id="task-input" placeholder="What needs to be done?" maxlength="100">
+                            <div class="input-underline"></div>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <div class="input-wrapper">
+                                <i class="fas fa-calendar-alt input-icon"></i>
+                                <input type="date" id="due-date" title="Due Date">
+                                <label for="due-date" class="floating-label">Due Date</label>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="input-wrapper">
+                                <i class="fas fa-tag input-icon"></i>
+                                <select id="category-select">
+                                    <option value="Personal">📝 Personal</option>
+                                    <option value="Work">💼 Work</option>
+                                    <option value="Urgent">🚨 Urgent</option>
+                                    <option value="Shopping">🛒 Shopping</option>
+                                    <option value="Health">💊 Health</option>
+                                    <option value="Learning">📚 Learning</option>
+                                    <option value="Finance">💰 Finance</option>
+                                </select>
+                                <label for="category-select" class="floating-label">Category</label>
+                            </div>
+                        </div>
+                    </div>
+                    <button id="add-task-btn" class="add-btn">
+                        <span class="btn-content">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Task</span>
+                        </span>
+                        <div class="btn-ripple"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search and Filter Section -->
+        <section class="controls-section">
+            <div class="controls-card">
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="search-input" placeholder="Search tasks, categories...">
+                        <div class="search-underline"></div>
+                    </div>
+                </div>
+                
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <h3 class="filter-title"><i class="fas fa-filter"></i> Status</h3>
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">
+                                <i class="fas fa-list"></i>
+                                <span>All</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                            <button class="filter-btn" data-filter="pending">
+                                <i class="fas fa-clock"></i>
+                                <span>Pending</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                            <button class="filter-btn" data-filter="completed">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Completed</span>
+                                <div class="btn-glow"></div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <h3 class="filter-title"><i class="fas fa-tags"></i> Categories</h3>
+                        <div class="category-filters">
+                            <button class="category-btn active" data-category="all">
+                                <span class="category-icon">🌟</span>
+                                <span>All</span>
+                            </button>
+                            <button class="category-btn" data-category="Personal">
+                                <span class="category-icon">📝</span>
+                                <span>Personal</span>
+                            </button>
+                            <button class="category-btn" data-category="Work">
+                                <span class="category-icon">💼</span>
+                                <span>Work</span>
+                            </button>
+                            <button class="category-btn" data-category="Urgent">
+                                <span class="category-icon">🚨</span>
+                                <span>Urgent</span>
+                            </button>
+                            <button class="category-btn" data-category="Shopping">
+                                <span class="category-icon">🛒</span>
+                                <span>Shopping</span>
+                            </button>
+                            <button class="category-btn" data-category="Health">
+                                <span class="category-icon">💊</span>
+                                <span>Health</span>
+                            </button>
+                            <button class="category-btn" data-category="Learning">
+                                <span class="category-icon">📚</span>
+                                <span>Learning</span>
+                            </button>
+                            <button class="category-btn" data-category="Finance">
+                                <span class="category-icon">💰</span>
+                                <span>Finance</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stat-card total-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-list-ul"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="total-tasks">0</div>
+                        <div class="stat-label">Total Tasks</div>
+                    </div>
+                    <div class="stat-trend">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <div class="stat-card completed-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="completed-tasks">0</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-progress">
+                        <div class="progress-ring">
+                            <svg class="progress-svg" width="40" height="40">
+                                <circle class="progress-circle-bg" cx="20" cy="20" r="16"></circle>
+                                <circle class="progress-circle" cx="20" cy="20" r="16" id="progress-circle"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card pending-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="pending-tasks">0</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-pulse">
+                        <div class="pulse-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sort Options -->
+        <section class="sort-section">
+            <div class="sort-container">
+                <div class="sort-header">
+                    <i class="fas fa-sort-amount-down"></i>
+                    <label for="sort-select">Sort Tasks</label>
+                </div>
+                <div class="sort-wrapper">
+                    <select id="sort-select">
+                        <option value="newest">🕒 Newest First</option>
+                        <option value="oldest">🕐 Oldest First</option>
+                        <option value="due-date">📅 Due Date</option>
+                        <option value="category">🏷️ Category</option>
+                        <option value="alphabetical">🔤 A-Z</option>
+                        <option value="priority">⭐ Priority</option>
+                    </select>
+                    <i class="fas fa-chevron-down sort-arrow"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tasks List Section -->
+        <section class="tasks-section">
+            <div class="tasks-header">
+                <h2><i class="fas fa-tasks"></i> Your Tasks</h2>
+                <div class="tasks-view-toggle">
+                    <button class="view-btn active" data-view="list" title="List View">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="view-btn" data-view="grid" title="Grid View">
+                        <i class="fas fa-th"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="tasks-container" class="tasks-container">
+                <!-- Tasks will be dynamically added here -->
+            </div>
+            
+            <div class="empty-state" id="empty-state">
+                <div class="empty-illustration">
+                    <div class="empty-icon">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <div class="empty-particles">
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                    </div>
+                </div>
+                <h3>Ready to be productive?</h3>
+                <p>Create your first task and start organizing your workflow</p>
+                <button class="empty-cta" onclick="document.getElementById('task-input').focus()">
+                    <i class="fas fa-plus"></i>
+                    Create First Task
+                </button>
+            </div>
+        </section>
+
+        <!-- Enhanced Action Buttons -->
+        <section class="action-section">
+            <div class="action-container">
+                <div class="bulk-actions">
+                    <div class="action-buttons-grid">
+                        <button id="clear-completed-btn" class="enhanced-action-btn secondary" data-tooltip="Remove all completed tasks">
+                            <div class="btn-background"></div>
+                            <div class="btn-content">
+                                <div class="btn-icon">
+                                    <i class="fas fa-check-double"></i>
+                                </div>
+                                <div class="btn-text">
+                                    <span class="btn-title">Clear Completed</span>
+                                    <span class="btn-subtitle">Remove done tasks</span>
+                                </div>
+                            </div>
+                            <div class="btn-glow"></div>
+                            <div class="btn-ripple"></div>
+                        </button>
+                        
+                        <button id="clear-all-btn" class="enhanced-action-btn danger" data-tooltip="Remove all tasks permanently">
+                            <div class="btn-background"></div>
+                            <div class="btn-content">
+                                <div class="btn-icon">
+                                    <i class="fas fa-trash-alt"></i>
+                                </div>
+                                <div class="btn-text">
+                                    <span class="btn-title">Clear All Tasks</span>
+                                    <span class="btn-subtitle">Start fresh</span>
+                                </div>
+                            </div>
+                            <div class="btn-glow"></div>
+                            <div class="btn-ripple"></div>
+                        </button>
+                        
+                        <button id="export-btn" class="enhanced-action-btn primary" onclick="app.exportTasks()" data-tooltip="Download tasks as text file">
+                            <div class="btn-background"></div>
+                            <div class="btn-content">
+                                <div class="btn-icon">
+                                    <i class="fas fa-download"></i>
+                                </div>
+                                <div class="btn-text">
+                                    <span class="btn-title">Export Tasks</span>
+                                    <span class="btn-subtitle">Save as file</span>
+                                </div>
+                            </div>
+                            <div class="btn-glow"></div>
+                            <div class="btn-ripple"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Action</h3>
+            <p id="modal-message">Are you sure you want to perform this action?</p>
+            <div class="modal-buttons">
+                <button id="modal-cancel" class="btn-cancel">Cancel</button>
+                <button id="modal-confirm" class="btn-confirm">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
